@@ -191,6 +191,16 @@
           description = "Node.js development environment";
         };
 
+        ocaml = {
+          path = ./ocaml;
+          description = "Ocaml development environment";
+        };
+        
+        coq = {
+          path = ./coq-opam;
+          description = "CoqCoq development environment";
+        };
+
         opa = {
           path = ./opa;
           description = "Open Policy Agent development environment";
