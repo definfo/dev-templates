@@ -195,10 +195,10 @@
           path = ./ocaml;
           description = "Ocaml development environment";
         };
-        
+
         coq = {
           path = ./coq-opam;
-          description = "CoqCoq development environment";
+          description = "Coq development environment";
         };
 
         opa = {
@@ -229,6 +229,11 @@
         python = {
           path = ./python;
           description = "Python development environment";
+        };
+
+        r = {
+          path = ./r;
+          description = "R development environment";
         };
 
         ruby = {

@@ -29,6 +29,7 @@ Once your preferred template has been initialized, you can use the provided shel
 
 | Language/framework/tool  | Template                      |
 | :----------------------- | :---------------------------- |
+| [Bun]                    | [`bun`](./bun/)               |
 | [C]/[C++]                | [`c-cpp`](./c-cpp/)           |
 | [Clojure]                | [`clojure`](./clojure/)       |
 | [C#][csharp]             | [`csharp`](./csharp/)         |
@@ -54,6 +55,7 @@ Once your preferred template has been initialized, you can use the provided shel
 | [Protobuf]               | [`protobuf`](./protobuf/)     |
 | [Pulumi]                 | [`pulumi`](./pulumi/)         |
 | [Purescript]             | [`purescript`](./purescript/) |
+| [R]                      | [`r`](./r/)                   |
 | [Ruby]                   | [`ruby`](./ruby/)             |
 | [Rust]                   | [`rust`](./rust/)             |
 | [Scala]                  | [`scala`](./scala/)           |
@@ -64,6 +66,10 @@ Once your preferred template has been initialized, you can use the provided shel
 ## Template contents
 
 The sections below list what each template includes. In all cases, you're free to add and remove packages as you see fit; the templates are just boilerplate.
+
+### [`bun`](./bun/)
+
+- [bun] 1.1.8
 
 ### [`c-cpp`](./c-cpp/)
 
@@ -244,6 +250,12 @@ A dev template that's fully customizable.
 - [Python] 3.11.4
 - [pip] 23.0.1
 
+### [`r`](./r/)
+
+- [R] 4.3.1
+- [rmarkdown] 2.22
+- [knitr] 1.43 ([pandoc] and [texlive])
+
 ### [`ruby`](./ruby/)
 
 - [Ruby] 3.2.2, plus the standard Ruby tools (`bundle`, `gem`, etc.)
@@ -254,11 +266,11 @@ A dev template that's fully customizable.
 
   - From the `rust-toolchain.toml` file if present
   - From the `rust-toolchain` file if present
-  - Version 1.70.0 if neither is present
+  - Version 1.78.0 if neither is present
 
-- [rust-analyzer] 2023-07-10
-- [cargo-audit] 0.17.0
-- [cargo-deny] 0.12.1
+- [rust-analyzer] 2024-04-29
+- [cargo-edit] 0.12.2
+- [cargo-deny] 0.14.23
 
 ### [`scala`](./scala/)
 
@@ -283,6 +295,7 @@ All of the templates have only the root [flake](./flake.nix) as a flake input. T
 
 [boot]: https://www.boot-clj.com
 [buf]: https://github.com/bufbuild/buf
+[bun]: https://bun.sh/
 [C]: https://www.open-std.org/jtc1/sc22/wg14
 [C++]: https://isocpp.org
 [cabal]: https://www.haskell.org/cabal
@@ -336,6 +349,7 @@ All of the templates have only the root [flake](./flake.nix) as a flake input. T
 [java]: https://java.com
 [jdtls]: https://projects.eclipse.org/projects/eclipse.jdt.ls
 [jq]: https://jqlang.github.io/jq
+[knitr]: https://yihui.org/knitr/
 [kotlin]: https://kotlinlang.org
 [latex]: https://www.latex-project.org/
 [lcov]: https://ltp.sourceforge.net/coverage/lcov.php
@@ -365,6 +379,7 @@ All of the templates have only the root [flake](./flake.nix) as a flake input. T
 [odoc]: https://github.com/ocaml/odoc
 [omnisharp-roslyn]: https://github.com/OmniSharp/omnisharp-roslyn
 [opa]: https://openpolicyagent.org
+[pandoc]: https://pandoc.org/
 [packer]: https://packer.io
 [pip]: https://pypi.org/project/pip
 [phoenix]: https://phoenixframework.org
@@ -376,7 +391,9 @@ All of the templates have only the root [flake](./flake.nix) as a flake input. T
 [purescript-language-server]: https://github.com/nwolverson/purescript-language-server
 [purs-tidy]: https://github.com/natefaubion/purescript-tidy
 [python]: https://python.org
+[r]: https://www.r-project.org/
 [release]: https://github.com/NixOS/nixpkgs/releases/tag/22.11
+[rmarkdown]: https://rmarkdown.rstudio.com/
 [ruby]: https://ruby-lang.org
 [rust]: https://rust-lang.org
 [rust-analyzer]: https://rust-analyzer.github.io
