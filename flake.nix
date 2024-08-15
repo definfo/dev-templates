@@ -1,7 +1,7 @@
 {
   description = "Ready-made templates for easily creating flake-driven environments";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
 
   outputs = { self, nixpkgs }:
     let
@@ -96,6 +96,13 @@
 
     {
       templates = rec {
+        default = empty;
+
+        bun = {
+          path = ./bun;
+          description = "Bun development environment";
+        };
+
         c-cpp = {
           path = ./c-cpp;
           description = "C/C++ development environment";
@@ -259,6 +266,11 @@
         shell = {
           path = ./shell;
           description = "Shell script development environment";
+        };
+
+        swift = {
+          path = ./swift;
+          description = "Swift development environment";
         };
 
         vlang = {

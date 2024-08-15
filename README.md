@@ -5,17 +5,17 @@
 To initialize (where `${ENV}` is listed in the table below):
 
 ```shell
-nix flake init --template github:the-nix-way/dev-templates#${ENV}
+nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#${ENV}"
 ```
 
 Here's an example (for the [`rust`](./rust) template):
 
 ```shell
 # Initialize in the current project
-nix flake init --template github:the-nix-way/dev-templates#rust
+nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#rust"
 
 # Create a new project
-nix flake new --template github:the-nix-way/dev-templates#rust ${NEW_PROJECT_DIRECTORY}
+nix flake new --template "https://flakehub.com/f/the-nix-way/dev-templates/*#rust" ${NEW_PROJECT_DIRECTORY}
 ```
 
 ## How to use the templates
@@ -60,6 +60,7 @@ Once your preferred template has been initialized, you can use the provided shel
 | [Rust]                   | [`rust`](./rust/)             |
 | [Scala]                  | [`scala`](./scala/)           |
 | [Shell]                  | [`shell`](./shell/)           |
+| [Swift]                  | [`swift`](./swift)            |
 | [Vlang]                  | [`vlang`](./vlang/)           |
 | [Zig]                    | [`zig`](./zig/)               |
 
@@ -281,7 +282,12 @@ A dev template that's fully customizable.
 
 - [shellcheck] 0.9.0
 
-### [`Vlang`](./vlang/)
+### [`swift`](./swift/)
+
+- [Swift] 5.8
+- [sourcekit-lsp]
+
+### [`vlang`](./vlang/)
 
 - [Vlang] 0.4.4
 
@@ -401,7 +407,9 @@ All of the templates have only the root [flake](./flake.nix) as a flake input. T
 [shellcheck]: https://www.shellcheck.net/
 [statix]: https://github.com/nerdypepper/statix
 [sbt]: https://www.scala-sbt.org
+[sourcekit-lsp]: https://github.com/swiftlang/sourcekit-lsp
 [spago]: https://github.com/purescript/spago
+[swift]: https://www.swift.org
 [tectonic]: https://tectonic-typesetting.github.io/
 [terraform]: https://terraform.io
 [terragrunt]: https://terragrunt.gruntwork.io
