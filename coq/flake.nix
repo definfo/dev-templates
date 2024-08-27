@@ -13,14 +13,11 @@
     {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages = with pkgs; 
-            [ ocaml
-              opam
-              pkg-config
-              gcc
-              bintools-unwrapped
-              gmp
-            ];
+          packages = with pkgs; [ coq_8_15 ] ++
+            (with coqPackages; [
+              coq-lsp
+              # VST
+            ]);
         };
       });
     };

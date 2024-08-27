@@ -113,6 +113,11 @@
           description = "Clojure development environment";
         };
 
+        coq = {
+          path = ./coq;
+          description = "Coq development environment";
+        };
+
         csharp = {
           path = ./csharp;
           description = "C# development environment";
@@ -201,11 +206,6 @@
         ocaml = {
           path = ./ocaml;
           description = "Ocaml development environment";
-        };
-
-        coq = {
-          path = ./coq-opam;
-          description = "Coq development environment";
         };
 
         opa = {

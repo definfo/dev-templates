@@ -5,17 +5,17 @@
 To initialize (where `${ENV}` is listed in the table below):
 
 ```shell
-nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#${ENV}"
+nix flake init --template github:definfo/dev-templates#${ENV}
 ```
 
 Here's an example (for the [`rust`](./rust) template):
 
 ```shell
 # Initialize in the current project
-nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#rust"
+nix flake init --template github:definfo/dev-templates#rust
 
 # Create a new project
-nix flake new --template "https://flakehub.com/f/the-nix-way/dev-templates/*#rust" ${NEW_PROJECT_DIRECTORY}
+nix flake new --template github:definfo/dev-templates#rust ${NEW_PROJECT_DIRECTORY}
 ```
 
 ## How to use the templates
@@ -33,6 +33,7 @@ Once your preferred template has been initialized, you can use the provided shel
 | [C]/[C++]                | [`c-cpp`](./c-cpp/)           |
 | [Clojure]                | [`clojure`](./clojure/)       |
 | [C#][csharp]             | [`csharp`](./csharp/)         |
+| [Coq]                    | [`coq`](./coq/)               |
 | [Cue]                    | [`cue`](./cue/)               |
 | [Dhall]                  | [`dhall`](./dhall/)           |
 | [Elixir]                 | [`elixir`](./elixir/)         |
@@ -98,6 +99,10 @@ The sections below list what each template includes. In all cases, you're free t
 - [omnisharp-roslyn]
 - [Mono] 6.12.0.182
 - [msbuild] 16.10.1
+
+### [`coq`](./cue/)
+
+- [Coq] 8.15.2
 
 ### [`cue`](./cue/)
 
@@ -317,6 +322,7 @@ All of the templates have only the root [flake](./flake.nix) as a flake input. T
 [composer]: https://getcomposer.org/
 [conan]: https://conan.io/
 [conftest]: https://www.conftest.dev
+[Coq]: https://coq.inria.fr
 [cppcheck]: http://cppcheck.sourceforge.net/
 [csharp]: https://dotnet.microsoft.com/en-us/languages/csharp
 [cue]: https://cuelang.org
