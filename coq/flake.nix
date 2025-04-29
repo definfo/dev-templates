@@ -13,13 +13,7 @@
         "aarch64-darwin"
       ];
       forEachSupportedSystem =
-        f:
-        nixpkgs.lib.genAttrs supportedSystems (
-          system:
-          f {
-            pkgs = import nixpkgs { inherit system; };
-          }
-        );
+        f: nixpkgs.lib.genAttrs supportedSystems (system: f { pkgs = import nixpkgs { inherit system; }; });
     in
     {
       devShells = forEachSupportedSystem (
@@ -29,9 +23,7 @@
             let
               coqPackages = pkgs.coqPackages_8_15;
             in
-            pkgs.mkShell {
-              packages = with coqPackages; [ coq ];
-            };
+            pkgs.mkShell { packages = with coqPackages; [ coq ]; };
         }
       );
     };

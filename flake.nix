@@ -13,13 +13,7 @@
         "aarch64-darwin"
       ];
       forEachSupportedSystem =
-        f:
-        nixpkgs.lib.genAttrs supportedSystems (
-          system:
-          f {
-            pkgs = nixpkgs.legacyPackages.${system};
-          }
-        );
+        f: nixpkgs.lib.genAttrs supportedSystems (system: f { pkgs = nixpkgs.legacyPackages.${system}; });
 
       scriptDrvs = forEachSupportedSystem (
         { pkgs }:
@@ -38,7 +32,7 @@
         {
           format = pkgs.writeShellApplication {
             name = "format";
-            runtimeInputs = with pkgs; [ nixpkgs-fmt ];
+            runtimeInputs = with pkgs; [ nixfmt-rfc-style ];
             text = ''
               shopt -s globstar
 

@@ -10,10 +10,10 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , rust-overlay
-    ,
+    {
+      self,
+      nixpkgs,
+      rust-overlay,
     }:
     let
       supportedSystems = [
@@ -52,6 +52,8 @@
               extensions = [
                 "rust-src"
                 "rustfmt"
+                "clippy"
+                "rust-analyzer"
               ];
             };
         nodejs = prev.nodejs;
@@ -68,24 +70,22 @@
                 rustToolchain
                 openssl
                 pkg-config
-                cargo-deny
-                cargo-edit
-                cargo-watch
-                rust-analyzer
 
                 node2nix
                 nodejs
                 nodePackages.pnpm
                 yarn
-                # yarn-berry
-
               ]
               ++ lib.optionals stdenv.hostPlatform.isLinux [
-                gtk3
                 glib-networking
+                # Tauri v1
+                gtk3
                 libsoup_2_4
                 webkitgtk_4_0
-                cairo
+                # Tauri v2
+                # gtk4
+                # libsoup_3
+                # webkitgtk_4_1
               ]
               ++ lib.optionals stdenv.hostPlatform.isDarwin (
                 with darwin.apple_sdk.frameworks;
