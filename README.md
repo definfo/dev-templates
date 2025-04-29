@@ -81,12 +81,6 @@ The sections below list what each template includes. In all cases, you're free t
 
 - [Coq] 8.15.2
 
-### [`go`](./go/)
-
-- [Go] 1.20.5
-- Standard Go tools ([goimports], [godoc], and others)
-- [golangci-lint]
-
 ### [`java`](./java/)
 
 - [Java] 20.0.1+9
