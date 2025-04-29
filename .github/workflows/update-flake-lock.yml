@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
+        uses: nixbuild/nix-quick-install-action@v30
       - name: Pre-update flake.lock
         run: nix develop --command update
       - name: Update flake.lock
