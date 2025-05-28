@@ -1,5 +1,5 @@
 {
-  description = "A startup rust project with devshell";
+  description = "A Nix-flake-based Node.js development environment";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -7,7 +7,6 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    rust-overlay.url = "github:oxalica/rust-overlay";
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };

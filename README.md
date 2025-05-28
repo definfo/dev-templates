@@ -106,7 +106,7 @@ The sections below list what each template includes. In all cases, you're free t
 - npm
 - pnpm
 - Yarn
-- node2nix
+- biome/deno/prettier
 
 ### [`ocaml`](./ocaml/)
 
@@ -146,6 +146,7 @@ The sections below list what each template includes. In all cases, you're free t
 ### [`typst`](./typst)
 
 - typst
+- typstyle
 - tinymist
 
 ### [`tauri`](./tauri)

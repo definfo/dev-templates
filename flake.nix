@@ -1,190 +1,201 @@
 {
   description = "Ready-made templates for easily creating flake-driven environments";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+  };
 
   outputs =
-    { self, nixpkgs }:
-    let
-      supportedSystems = [
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.treefmt-nix.flakeModule
+        inputs.pre-commit-hooks.flakeModule
+      ];
+
+      systems = [
         "x86_64-linux"
         "aarch64-linux"
-        "x86_64-darwin"
         "aarch64-darwin"
+        "x86_64-darwin"
       ];
-      forEachSupportedSystem =
-        f: nixpkgs.lib.genAttrs supportedSystems (system: f { pkgs = nixpkgs.legacyPackages.${system}; });
 
-      scriptDrvs = forEachSupportedSystem (
-        { pkgs }:
+      perSystem =
+        {
+          config,
+          pkgs,
+          system,
+          ...
+        }:
         let
-          getSystem = "SYSTEM=$(nix eval --impure --raw --expr 'builtins.currentSystem')";
-          forEachDir = exec: ''
-            for dir in */; do
-              (
-                cd "''${dir}"
+          scriptDrvs =
+            let
+              forEachDir = exec: ''
+                for dir in */; do
+                  (
+                    cd "''${dir}"
 
-                ${exec}
-              )
-            done
-          '';
+                    ${exec}
+                  )
+                done
+              '';
+            in
+            {
+              # only run this locally, as Actions will run out of disk space
+              build = pkgs.writeShellApplication {
+                name = "build";
+                text = ''
+                  ${forEachDir ''
+                    echo "building ''${dir}"
+                    nix build .#devShells.${system}.default
+                  ''}
+                '';
+              };
+
+              check = pkgs.writeShellApplication {
+                name = "check";
+                text = forEachDir ''
+                  echo "checking ''${dir}"
+                  nix flake check --all-systems --no-build
+                '';
+              };
+
+              update = pkgs.writeShellApplication {
+                name = "update";
+                text = forEachDir ''
+                  echo "updating ''${dir}"
+                  nix flake update
+                '';
+              };
+            };
         in
         {
-          format = pkgs.writeShellApplication {
-            name = "format";
-            runtimeInputs = with pkgs; [ nixfmt-rfc-style ];
-            text = ''
-              shopt -s globstar
+          # https://flake.parts/options/treefmt-nix.html
+          # Example: https://github.com/nix-community/buildbot-nix/blob/main/nix/treefmt/flake-module.nix
+          treefmt = {
+            projectRootFile = "flake.nix";
+            settings.global.excludes = [ ];
 
-              nixfmt -- **/*.nix
-            '';
+            programs = {
+              deadnix.enable = true;
+              nixfmt.enable = true;
+              statix.enable = true;
+            };
           };
 
-          # only run this locally, as Actions will run out of disk space
-          build = pkgs.writeShellApplication {
-            name = "build";
-            text = ''
-              ${getSystem}
-
-              ${forEachDir ''
-                echo "building ''${dir}"
-                nix build ".#devShells.''${SYSTEM}.default"
-              ''}
-            '';
+          # https://flake.parts/options/git-hooks-nix.html
+          # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
+          pre-commit.settings.hooks = {
+            commitizen.enable = true;
+            eclint.enable = true;
+            editorconfig-checker.enable = true;
+            treefmt.enable = true;
           };
 
-          check = pkgs.writeShellApplication {
-            name = "check";
-            text = forEachDir ''
-              echo "checking ''${dir}"
-              nix flake check --all-systems --no-build
+          devShells.default = pkgs.mkShell {
+            shellHook = ''
+              ${config.pre-commit.installationScript}
+              echo 1>&2 "Welcome to the development shell!"
             '';
-          };
-
-          update = pkgs.writeShellApplication {
-            name = "update";
-            text = forEachDir ''
-              echo "updating ''${dir}"
-              nix flake update
-            '';
-          };
-        }
-      );
-    in
-    {
-      devShells = forEachSupportedSystem (
-        { pkgs }:
-        {
-          default = pkgs.mkShell {
             packages =
-              with scriptDrvs.${pkgs.system};
+              with scriptDrvs;
               [
                 build
                 check
-                format
                 update
               ]
-              ++ [ pkgs.nixfmt-rfc-style ];
+              ++ config.pre-commit.settings.enabledPackages;
           };
-        }
-      );
-
-      packages = forEachSupportedSystem (
-        { pkgs }:
-        rec {
-          default = dvt;
-          dvt = pkgs.writeShellApplication {
-            name = "dvt";
-            bashOptions = [
-              "errexit"
-              "pipefail"
-            ];
-            text = ''
-              if [ -z "''${1}" ]; then
-                echo "no template specified"
-                exit 1
-              fi
-
-              TEMPLATE=$1
-
-              nix \
-                --experimental-features 'nix-command flakes' \
-                flake init \
-                --template \
-                "github:the-nix-way/dev-templates#''${TEMPLATE}"
-            '';
-          };
-        }
-      );
-    }
-
-    //
-
-      {
-        templates = rec {
-          c-cpp = {
-            path = ./c-cpp;
-            description = "C/C++ development environment";
-          };
-
-          java = {
-            path = ./java;
-            description = "Java development environment";
-          };
-
-          kotlin = {
-            path = ./kotlin;
-            description = "Kotlin development environment";
-          };
-
-          latex = {
-            path = ./latex;
-            description = "LaTeX development environment";
-          };
-
-          markdown = {
-            path = ./markdown;
-            description = "Markdown development environment";
-          };
-
-          nix = {
-            path = ./nix;
-            description = "Nix development environment";
-          };
-
-          node = {
-            path = ./node;
-            description = "Node.js development environment";
-          };
-
-          ocaml = {
-            path = ./ocaml;
-            description = "OCaml development environment";
-          };
-
-          rust = {
-            path = ./rust;
-            description = "Rust development environment";
-          };
-
-          scala = {
-            path = ./scala;
-            description = "Scala development environment";
-          };
-
-          shell = {
-            path = ./shell;
-            description = "Shell script development environment";
-          };
-
-          # Aliases
-          c = c-cpp;
-          cpp = c-cpp;
-          cxx = c-cpp;
-          md = markdown;
-          js = node;
-          nodejs = node;
-          tex = latex;
         };
-      };
+    };
 }
+
+/*
+      //
+
+        {
+          templates = rec {
+            c-cpp = {
+              path = ./c-cpp;
+              description = "C/C++ development environment";
+            };
+
+            coq = {
+              path = ./coq;
+              description = "Rocq(Coq) development environment";
+            };
+
+            java = {
+              path = ./java;
+              description = "Java development environment";
+            };
+
+            kotlin = {
+              path = ./kotlin;
+              description = "Kotlin development environment";
+            };
+
+            latex = {
+              path = ./latex;
+              description = "LaTeX development environment";
+            };
+
+            markdown = {
+              path = ./markdown;
+              description = "Markdown development environment";
+            };
+
+            node = {
+              path = ./node;
+              description = "Node.js development environment";
+            };
+
+            ocaml = {
+              path = ./ocaml;
+              description = "OCaml development environment";
+            };
+
+            rust = {
+              path = ./rust;
+              description = "Rust development environment";
+            };
+
+            scala = {
+              path = ./scala;
+              description = "Scala development environment";
+            };
+
+            shell = {
+              path = ./shell;
+              description = "Shell script development environment";
+            };
+
+            tauri = {
+              path = ./tauri;
+              description = "Tauri development environment";
+            };
+
+            typst = {
+              path = ./typst;
+              description = "Typst development environment";
+            };
+
+            # Aliases
+            c = c-cpp;
+            cpp = c-cpp;
+            cxx = c-cpp;
+            md = markdown;
+            js = node;
+            nodejs = node;
+            rocq = coq;
+            tex = latex;
+          };
+        };
+  }
+*/

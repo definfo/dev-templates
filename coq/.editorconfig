@@ -1,18 +1,16 @@
-# https://editorconfig.org
 root = true
 
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = lf
 charset = utf-8
+end_of_line = lf
+indent_style = space
 trim_trailing_whitespace = true
 insert_final_newline = true
 
 [*.nix]
 indent_size = 2
 
-[*.lock]
+[*.{vo,vok,vos,glob,aux,cache,lock}]
 charset = unset
 end_of_line = unset
 insert_final_newline = unset
@@ -21,4 +19,7 @@ indent_style = unset
 indent_size = unset
 
 [.envrc]
+indent_size = 2
+
+[*.v]
 indent_size = 2
