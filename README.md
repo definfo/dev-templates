@@ -17,7 +17,7 @@ Sorry for any inconvenience :(
 To initialize (where `${ENV}` is listed in the table below):
 
 ```shell
-nix flake init --template github:definfo/dev-templates#${ENV}
+nix flake init -t github:definfo/dev-templates#${ENV}
 ```
 
 ## How to use the templates
@@ -49,6 +49,7 @@ Once your preferred template has been initialized, you can use the provided shel
 | Rust                    | [`naersk`](https://github.com/nix-community/naersk)               |
 | Rust                    | [`crate2nix`](https://nix-community.github.io/crate2nix/)         |
 | Rust toolchains         | [`fenix`](https://github.com/nix-community/fenix)                 |
+| Scala                   | [`typelevel-nix`](https://github.com/typelevel/typelevel-nix)     |
 | Scala                   | [`scala-seed`](https://github.com/DevInsideYou/scala-seed)        |
 | Scala                   | [`scala`](./scala/)                                               |
 | Shell                   | [`shell`](./shell/)                                               |

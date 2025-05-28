@@ -113,89 +113,83 @@
               ++ config.pre-commit.settings.enabledPackages;
           };
         };
+      flake = {
+        templates = rec {
+          c-cpp = {
+            path = ./c-cpp;
+            description = "C/C++ development environment";
+          };
+
+          coq = {
+            path = ./coq;
+            description = "Rocq(Coq) development environment";
+          };
+
+          java = {
+            path = ./java;
+            description = "Java development environment";
+          };
+
+          kotlin = {
+            path = ./kotlin;
+            description = "Kotlin development environment";
+          };
+
+          latex = {
+            path = ./latex;
+            description = "LaTeX development environment";
+          };
+
+          markdown = {
+            path = ./markdown;
+            description = "Markdown development environment";
+          };
+
+          node = {
+            path = ./node;
+            description = "Node.js development environment";
+          };
+
+          ocaml = {
+            path = ./ocaml;
+            description = "OCaml development environment";
+          };
+
+          rust = {
+            path = ./rust;
+            description = "Rust development environment";
+          };
+
+          scala = {
+            path = ./scala;
+            description = "Scala development environment";
+          };
+
+          shell = {
+            path = ./shell;
+            description = "Shell script development environment";
+          };
+
+          tauri = {
+            path = ./tauri;
+            description = "Tauri development environment";
+          };
+
+          typst = {
+            path = ./typst;
+            description = "Typst development environment";
+          };
+
+          # Aliases
+          c = c-cpp;
+          cpp = c-cpp;
+          cxx = c-cpp;
+          md = markdown;
+          js = node;
+          nodejs = node;
+          rocq = coq;
+          tex = latex;
+        };
+      };
     };
 }
-
-/*
-      //
-
-        {
-          templates = rec {
-            c-cpp = {
-              path = ./c-cpp;
-              description = "C/C++ development environment";
-            };
-
-            coq = {
-              path = ./coq;
-              description = "Rocq(Coq) development environment";
-            };
-
-            java = {
-              path = ./java;
-              description = "Java development environment";
-            };
-
-            kotlin = {
-              path = ./kotlin;
-              description = "Kotlin development environment";
-            };
-
-            latex = {
-              path = ./latex;
-              description = "LaTeX development environment";
-            };
-
-            markdown = {
-              path = ./markdown;
-              description = "Markdown development environment";
-            };
-
-            node = {
-              path = ./node;
-              description = "Node.js development environment";
-            };
-
-            ocaml = {
-              path = ./ocaml;
-              description = "OCaml development environment";
-            };
-
-            rust = {
-              path = ./rust;
-              description = "Rust development environment";
-            };
-
-            scala = {
-              path = ./scala;
-              description = "Scala development environment";
-            };
-
-            shell = {
-              path = ./shell;
-              description = "Shell script development environment";
-            };
-
-            tauri = {
-              path = ./tauri;
-              description = "Tauri development environment";
-            };
-
-            typst = {
-              path = ./typst;
-              description = "Typst development environment";
-            };
-
-            # Aliases
-            c = c-cpp;
-            cpp = c-cpp;
-            cxx = c-cpp;
-            md = markdown;
-            js = node;
-            nodejs = node;
-            rocq = coq;
-            tex = latex;
-          };
-        };
-  }
-*/
