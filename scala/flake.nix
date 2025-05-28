@@ -45,7 +45,7 @@
               (_final: prev: rec {
                 # inherit (prev) jdk;
                 jdk = prev."jdk${toString javaVersion}";
-                scala = prev."scala_${toString scalaVersion}" { jre = jdk; };
+                scala = prev."scala_${toString scalaVersion}".override { jre = jdk; };
                 sbt = prev.sbt.override { jre = jdk; };
               })
             ];
