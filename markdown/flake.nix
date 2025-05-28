@@ -44,6 +44,7 @@
               nixfmt.enable = true;
               statix.enable = true;
               just.enable = true;
+              mdformat.enable = true;
               prettier = {
                 enable = true;
                 # Use Prettier 2.x for CJK pangu formatting
@@ -78,7 +79,6 @@
               [
                 pandoc
                 typst
-                config.treefmt.build.wrapper
               ]
               ++ config.pre-commit.settings.enabledPackages;
           };

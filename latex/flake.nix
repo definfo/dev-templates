@@ -60,30 +60,21 @@
               treefmt.enable = true;
             };
 
-            # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
-            # packages.hello = pkgs.hello;
-
-            # NOTE: You can also use `config.pre-commit.devShell` or `config.treefmt.build.devShell`
-            devShells.default =
-              pkgs.mkShell.override
-                {
-                  # Override stdenv in order to change compiler:
-                  # stdenv = pkgs.clangStdenv;
-                }
-                {
-                  shellHook = ''
-                    ${config.pre-commit.installationScript}
-                    echo 1>&2 "Welcome to the development shell!"
-                  '';
-                  packages =
-                    with pkgs;
-                    [
-                      texlive.combined.scheme-full
-                      texlab
-                      tectonic
-                    ]
-                    ++ config.pre-commit.settings.enabledPackages;
-                };
+            devShells.default = pkgs.mkShell {
+              shellHook = ''
+                ${config.pre-commit.installationScript}
+                echo 1>&2 "Welcome to the development shell!"
+              '';
+              packages =
+                with pkgs;
+                [
+                  texlive.combined.scheme-full
+                  texlab
+                  tectonic
+                  pandoc
+                ]
+                ++ config.pre-commit.settings.enabledPackages;
+            };
           };
       }
     );

@@ -40,6 +40,7 @@ Once your preferred template has been initialized, you can use the provided shel
 | Jupyter                 | [`uv2nix TODO`](https://pyproject-nix.github.io/uv2nix/)          |
 | Kotlin                  | [`kotlin`](./kotlin/)                                             |
 | LaTeX                   | [`latex`](./latex/)                                               |
+| Markdown                | [`markdown`](./markdown/)                                         |
 | Node.js                 | [`node`](./node/)                                                 |
 | Node.js                 | [`node2nix`](https://github.com/svanderburg/node2nix)             |
 | OCaml                   | [`ocaml`](./ocaml/)                                               |
@@ -88,7 +89,8 @@ The sections below list what each template includes. In all cases, you're free t
 - Java
 - Maven
 - Gradle
-- jdtls
+- lombok
+- google-java-format
 
 ### [`kotlin`](./kotlin/)
 
@@ -100,6 +102,15 @@ The sections below list what each template includes. In all cases, you're free t
 - texlive
 - tectonic
 - texlab
+- texfmt
+- pandoc
+
+### [`markdown`](./markdown/)
+
+- pandoc
+- typst
+- mdformat
+- prettier
 
 ### [`node`](./node/)
 
@@ -115,6 +126,8 @@ The sections below list what each template includes. In all cases, you're free t
 - Dune
 - odoc
 - ocamlformat
+- dune-fmt (disabled by default)
+- dune-opam-sync
 
 ### [`rust`](./rust/)
 
@@ -123,20 +136,21 @@ The sections below list what each template includes. In all cases, you're free t
 - cargo-audit
 - cargo-bloat
 - cargo-license
-- cargo-llvm-cov
+- cargo-llvm-cov (unsupported on darwin)
 - cargo-nextest
 - cargo-outdated
 - cargo-show-asm
 - samply
-- valgrind
+- valgrind (unsupported on darwin)
 - watchexec
 - bacon
 
 ### [`scala`](./scala/)
 
-- Scala (Java)
+- Scala
 - sbt
 - coursier
+- scala-fmt
 
 ### [`shell`](./shell/)
 
@@ -149,6 +163,7 @@ The sections below list what each template includes. In all cases, you're free t
 - typst
 - typstyle
 - tinymist
+- pandoc
 
 ### [`tauri`](./tauri)
 

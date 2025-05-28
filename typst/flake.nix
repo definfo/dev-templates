@@ -66,6 +66,7 @@
               [
                 typst
                 tinymist
+                pandoc
               ]
               ++ config.pre-commit.settings.enabledPackages;
           };
