@@ -120,6 +120,9 @@
               [
                 # Rust toolchain
                 rustToolchain
+                openssl
+                pkg-config
+                # rustPlatform.bindgenHook
 
                 # Miscellaneous
                 just

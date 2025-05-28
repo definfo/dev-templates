@@ -40,7 +40,6 @@ Once your preferred template has been initialized, you can use the provided shel
 | Jupyter                 | [`uv2nix TODO`](https://pyproject-nix.github.io/uv2nix/)          |
 | Kotlin                  | [`kotlin`](./kotlin/)                                             |
 | LaTeX                   | [`latex`](./latex/)                                               |
-| Nix                     | [`nix`](./nix/)                                                   |
 | Node.js                 | [`node`](./node/)                                                 |
 | Node.js                 | [`node2nix`](https://github.com/svanderburg/node2nix)             |
 | OCaml                   | [`ocaml`](./ocaml/)                                               |
@@ -100,16 +99,6 @@ The sections below list what each template includes. In all cases, you're free t
 - texlive
 - tectonic
 - texlab
-
-### [`nix`](./nix/)
-
-- cachix
-- dhall-to-nix
-- lorri
-- niv
-- nixfmt
-- statix
-- vulnix
 
 ### [`node`](./node/)
 
