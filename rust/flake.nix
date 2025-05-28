@@ -1,5 +1,5 @@
 {
-  description = "A Nix-flake-based Tauri development environment";
+  description = "A Nix-flake-based Scala development environment";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -54,15 +54,8 @@
                         "rust-src"
                         "rust-analyzer"
                       ];
+                      # targets = [ "arm-unknown-linux-gnueabihf" ];
                     };
-              })
-              (_final: prev: rec {
-                inherit (prev) nodejs;
-                # nodejs = prev.nodejs_latest;
-
-                pnpm = prev.pnpm.override { inherit nodejs; };
-                yarn = prev.yarn.override { inherit nodejs; };
-                yarn-berry = prev.yarn-berry.override { inherit nodejs; };
               })
             ];
           };
@@ -74,26 +67,24 @@
             settings.global.excludes = [ ];
 
             programs = {
-              biome.enable = true;
               deadnix.enable = true;
-              # deno.enable = true;
               nixfmt.enable = true;
               rustfmt.enable = true;
+              # shellcheck.enable = true;
+              # shfmt.enable = true;
               statix.enable = true;
-              /*
-                prettier = {
-                  enable = true;
-                  # Use Prettier 2.x for CJK pangu formatting
-                  package = pkgs.nodePackages.prettier.override {
-                    version = "2.8.8";
-                    src = pkgs.fetchurl {
-                      url = "https://registry.npmjs.org/prettier/-/prettier-2.8.8.tgz";
-                      sha512 = "tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==";
-                    };
+              prettier = {
+                enable = true;
+                # Use Prettier 2.x for CJK pangu formatting
+                package = pkgs.nodePackages.prettier.override {
+                  version = "2.8.8";
+                  src = pkgs.fetchurl {
+                    url = "https://registry.npmjs.org/prettier/-/prettier-2.8.8.tgz";
+                    sha512 = "tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==";
                   };
-                  settings.editorconfig = true;
                 };
-              */
+                settings.editorconfig = true;
+              };
             };
           };
 
@@ -133,22 +124,27 @@
                 pkg-config
                 # rustPlatform.bindgenHook
 
-                nodejs
-                pnpm
-                yarn
-                # yarn-berry
+                # Miscellaneous
+                just
+                cargo-audit
+                cargo-bloat
+                cargo-license
+                cargo-nextest
+                cargo-outdated
+                cargo-show-asm
+                samply
+                watchexec
+                bacon
               ]
-              ++ lib.optionals stdenv.hostPlatform.isLinux [
-                glib-networking
-                # Tauri v1
-                gtk3
-                libsoup_2_4
-                webkitgtk_4_0
-                # Tauri v2
-                # gtk4
-                # libsoup_3
-                # webkitgtk_4_1
-              ]
+              ++ (
+                if system == "x86_64-darwin" || system == "aarch64-darwin" then
+                  [ ]
+                else
+                  [
+                    cargo-llvm-cov
+                    valgrind
+                  ]
+              )
               ++ config.pre-commit.settings.enabledPackages;
           };
         };

@@ -1,11 +1,9 @@
-# https://editorconfig.org
 root = true
 
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = lf
 charset = utf-8
+end_of_line = lf
+indent_style = space
 trim_trailing_whitespace = true
 insert_final_newline = true
 
@@ -21,4 +19,10 @@ indent_style = unset
 indent_size = unset
 
 [.envrc]
+indent_size = 2
+
+[*.{rs,toml,json}]
+indent_size = 4
+
+[*.{typ,md}]
 indent_size = 2

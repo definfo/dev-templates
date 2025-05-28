@@ -1,13 +1,8 @@
-# https://editorconfig.org
 root = true
 
 [*]
-indent_style = space
-indent_size = 2
-end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
+end_of_line = lf
 
 [*.nix]
 indent_size = 2
@@ -22,3 +17,14 @@ indent_size = unset
 
 [.envrc]
 indent_size = 2
+
+[{*.js,*.json}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.js]
+block_comment_start = /**
+block_comment = *
+block_comment_end = */
