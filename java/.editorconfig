@@ -26,6 +26,9 @@ trim_trailing_whitespace = unset
 indent_style = unset
 indent_size = unset
 
+[.envrc]
+indent_size = 2
+
 [.editorconfig]
 charset = unset
 end_of_line = unset

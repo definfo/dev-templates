@@ -12,13 +12,10 @@
   };
 
   outputs =
-    inputs@{ self, flake-parts, ... }:
+    inputs@{ flake-parts, ... }:
     # See https://flake.parts/module-arguments for module arguments
     flake-parts.lib.mkFlake { inherit inputs; } (
-      top@{
-        config,
-        withSystem,
-        moduleWithSystem,
+      {
         ...
       }:
       {
@@ -35,10 +32,7 @@
         perSystem =
           {
             config,
-            self',
-            inputs',
             pkgs,
-            lib,
             ...
           }:
           {
@@ -47,9 +41,12 @@
             treefmt = {
               projectRootFile = "flake.nix";
               settings.global.excludes = [ ];
-              programs.clang-format.enable = true;
-              programs.cmake-format.enable = true;
-              programs.nixfmt.enable = true;
+
+              programs = {
+                clang-format.enable = true;
+                cmake-format.enable = true;
+                nixfmt.enable = true;
+              };
 
               settings.formatter.cmake-format.includes = [
                 "*/CMakeLists.txt"

@@ -1,10 +1,10 @@
 {
-  description = "A Nix-flake-based Coq development environment using opam";
+  description = "A Nix-flake-based Rocq(Coq) development environment";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
   outputs =
-    { self, nixpkgs }:
+    { nixpkgs }:
     let
       supportedSystems = [
         "x86_64-linux"
