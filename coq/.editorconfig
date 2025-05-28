@@ -21,5 +21,9 @@ indent_size = unset
 [.envrc]
 indent_size = 2
 
+[Makefile]
+indent_style = tab
+indent_size = 4
+
 [*.v]
 indent_size = 2
