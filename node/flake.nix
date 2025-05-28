@@ -33,13 +33,16 @@
           system,
           ...
         }:
+        let
+          nodeVersion = 22; # Change this value to update the whole stack
+        in
         {
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [
               (_final: prev: rec {
-                inherit (prev) nodejs;
-                # nodejs = prev.nodejs_latest;
+                # inherit (prev) nodejs;
+                nodejs = prev."nodejs_${toString nodeVersion}";
 
                 pnpm = prev.pnpm.override { inherit nodejs; };
                 yarn = prev.yarn.override { inherit nodejs; };
