@@ -45,6 +45,7 @@ Once your preferred template has been initialized, you can use the provided shel
 | Node.js                 | [`node2nix`](https://github.com/svanderburg/node2nix)             |
 | OCaml                   | [`ocaml`](./ocaml/)                                               |
 | OCaml                   | [`opam-nix`](https://github.com/tweag/opam-nix)                   |
+| Python                  | [`python`](./python/)                                             |
 | Python                  | [`uv2nix`](https://pyproject-nix.github.io/uv2nix/)               |
 | Rust                    | [`rust`](./rust/)                                                 |
 | Rust                    | [`naersk`](https://github.com/nix-community/naersk)               |
@@ -119,6 +120,12 @@ The sections below list what each template includes. In all cases, you're free t
 - pnpm
 - Yarn
 - biome/deno/prettier
+
+### [`python`](./python/)
+
+- Python
+- uv
+- (CUDA toolchain)
 
 ### [`ocaml`](./ocaml/)
 
