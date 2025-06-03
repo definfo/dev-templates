@@ -66,6 +66,7 @@
             commitizen.enable = true;
             eclint.enable = true;
             editorconfig-checker.enable = true;
+            markdownlint.enable = true;
             treefmt.enable = true;
           };
 
@@ -79,6 +80,7 @@
               [
                 pandoc
                 typst
+                just
               ]
               ++ config.pre-commit.settings.enabledPackages;
           };

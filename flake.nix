@@ -155,6 +155,11 @@
             description = "OCaml development environment";
           };
 
+          python = {
+            path = ./python;
+            description = "Python development environment";
+          };
+
           rust = {
             path = ./rust;
             description = "Rust development environment";
@@ -187,6 +192,7 @@
           md = markdown;
           js = node;
           nodejs = node;
+          py = python;
           rocq = coq;
           tex = latex;
         };

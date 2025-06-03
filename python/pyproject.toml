@@ -1,0 +1,12 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "example-project"
+version = "0.1.0"
+description = "Example description"
+requires-python = ">=3.12"
+
+dependencies = []
+
