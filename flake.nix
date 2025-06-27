@@ -83,9 +83,17 @@
             settings.global.excludes = [ ];
 
             programs = {
+              autocorrect = {
+                enable = true;
+                includes = [
+                  "*.nix"
+                  "*.md"
+                ];
+              };
               deadnix.enable = true;
               nixfmt.enable = true;
               statix.enable = true;
+              zizmor.enable = true;
             };
           };
 
@@ -99,18 +107,15 @@
           };
 
           devShells.default = pkgs.mkShell {
-            shellHook = ''
-              ${config.pre-commit.installationScript}
-              echo 1>&2 "Welcome to the development shell!"
-            '';
-            packages =
-              with scriptDrvs;
-              [
-                build
-                check
-                update
-              ]
-              ++ config.pre-commit.settings.enabledPackages;
+            inputsFrom = [
+              config.pre-commit.devShell
+              config.treefmt.build.devShell
+            ];
+            packages = with scriptDrvs; [
+              build
+              check
+              update
+            ];
           };
         };
       flake = {
@@ -194,6 +199,7 @@
           nodejs = node;
           py = python;
           rocq = coq;
+          rs = rust;
           tex = latex;
         };
       };
