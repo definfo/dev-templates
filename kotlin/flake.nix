@@ -40,10 +40,8 @@
             settings.global.excludes = [ ];
 
             programs = {
-              deadnix.enable = true;
               google-java-format.enable = true;
               nixfmt.enable = true;
-              statix.enable = true;
             };
           };
 
@@ -52,28 +50,28 @@
           pre-commit.settings.hooks = {
             commitizen.enable = true;
             eclint.enable = true;
-            editorconfig-checker.enable = true;
             treefmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
+
             # TODO: `gradle -Dorg.gradle.java.home=$JAVA_HOME`
             shellHook = ''
-              ${config.pre-commit.installationScript}
               echo 1>&2 "Welcome to the development shell!"
             '';
 
-            packages =
-              with pkgs;
-              [
-                gradle
-                jdk
-                kotlin
-                ncurses
-                patchelf
-                zlib
-              ]
-              ++ config.pre-commit.settings.enabledPackages;
+            packages = with pkgs; [
+              gradle
+              jdk
+              kotlin
+              ncurses
+              patchelf
+              zlib
+            ];
           };
         };
     };

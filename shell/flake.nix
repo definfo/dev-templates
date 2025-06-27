@@ -40,9 +40,7 @@
             settings.global.excludes = [ ];
 
             programs = {
-              deadnix.enable = true;
               nixfmt.enable = true;
-              statix.enable = true;
               shellcheck.enable = true;
               shfmt.enable = true;
               just.enable = true;
@@ -54,16 +52,18 @@
           pre-commit.settings.hooks = {
             commitizen.enable = true;
             eclint.enable = true;
-            editorconfig-checker.enable = true;
             treefmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
+
             shellHook = ''
-              ${config.pre-commit.installationScript}
               echo 1>&2 "Welcome to the development shell!"
             '';
-            packages = config.pre-commit.settings.enabledPackages;
           };
         };
     };

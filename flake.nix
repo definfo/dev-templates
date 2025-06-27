@@ -87,10 +87,13 @@
                 enable = true;
                 includes = [
                   "*.nix"
+                  "*.yml"
                   "*.md"
                 ];
               };
               deadnix.enable = true;
+              mdformat.enable = true;
+              mdsh.enable = true;
               nixfmt.enable = true;
               statix.enable = true;
               zizmor.enable = true;
@@ -103,13 +106,14 @@
             commitizen.enable = true;
             eclint.enable = true;
             editorconfig-checker.enable = true;
+            markdownlint.enable = true;
             treefmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
             inputsFrom = [
-              config.pre-commit.devShell
               config.treefmt.build.devShell
+              config.pre-commit.devShell
             ];
             packages = with scriptDrvs; [
               build

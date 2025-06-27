@@ -66,22 +66,16 @@
             settings.global.excludes = [ ];
 
             programs = {
-              deadnix.enable = true;
-              nixfmt.enable = true;
-              prettier = {
+              autocorrect = {
                 enable = true;
-                # Use Prettier 2.x for CJK pangu formatting
-                package = pkgs.nodePackages.prettier.override {
-                  version = "2.8.8";
-                  src = pkgs.fetchurl {
-                    url = "https://registry.npmjs.org/prettier/-/prettier-2.8.8.tgz";
-                    sha512 = "tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==";
-                  };
-                };
-                settings.editorconfig = true;
+                includes = [
+                  "*.py"
+                  "*.ipynb"
+                  "*.md"
+                ];
               };
+              nixfmt.enable = true;
               ruff-format.enable = true;
-              statix.enable = true;
             };
           };
 
@@ -98,8 +92,12 @@
           # This devShell adds Python and CUDA toolchain.
           /*
             devShells.cuda = pkgs.mkShell rec {
+              inputsFrom = [
+                config.treefmt.build.devShell
+                config.pre-commit.devShell
+                ];
+
               shellHook = ''
-                ${config.pre-commit.installationScript}
                 unset PYTHONPATH
 
                 # CUDA-related
@@ -133,8 +131,7 @@
                   xorg.libXrandr
                   binutils
                   uv
-                ])
-                ++ config.pre-commit.settings.enabledPackages;
+                ]);
 
               env = {
                 # Force uv to use Python interpreter from venv
@@ -149,8 +146,12 @@
           # It is of course perfectly OK to keep using an impure virtualenv workflow and only use uv2nix to build packages.
           # This devShell simply adds Python and undoes the dependency leakage done by Nixpkgs Python infrastructure.
           devShells.impure = pkgs.mkShell {
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
+
             shellHook = ''
-              ${config.pre-commit.installationScript}
               unset PYTHONPATH
               echo 1>&2 "Welcome to the development shell!"
             '';
@@ -158,7 +159,7 @@
             packages = [
               python
               pkgs.uv
-            ] ++ config.pre-commit.settings.enabledPackages;
+            ];
 
             env =
               {
