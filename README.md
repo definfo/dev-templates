@@ -33,34 +33,38 @@ Once your preferred template has been initialized, you can use the provided shel
 | :---------------------- | :------------------------------------------------------------------ |
 | C/C++                   | [`c-cpp`](./c-cpp/) Also refer to (<https://wiki.nixos.org/wiki/C>) |
 | Coq                     | [`coq`](./coq/)                                                     |
-| Go                      | [`gomod2nix`](https://github.com/nix-community/gomod2nix)           |
-| Haskell                 | [`haskell-flake`](https://github.com/srid/haskell-flake)            |
-| Haskell                 | [`cabal2nix`](https://github.com/NixOS/cabal2nix)                   |
 | Java                    | [`java`](./java/)                                                   |
-| Jupyter                 | [`uv2nix TODO`](https://pyproject-nix.github.io/uv2nix/)            |
 | Kotlin                  | [`kotlin`](./kotlin/)                                               |
 | LaTeX                   | [`latex`](./latex/)                                                 |
 | Markdown                | [`markdown`](./markdown/)                                           |
 | Node.js                 | [`node`](./node/)                                                   |
-| Node.js                 | [`node2nix`](https://github.com/svanderburg/node2nix)               |
 | OCaml                   | [`ocaml`](./ocaml/)                                                 |
-| OCaml                   | [`opam-nix`](https://github.com/tweag/opam-nix)                     |
 | Python                  | [`python`](./python/)                                               |
-| Python                  | [`uv2nix`](https://pyproject-nix.github.io/uv2nix/)                 |
 | Rust                    | [`rust`](./rust/)                                                   |
-| Rust                    | [`naersk`](https://github.com/nix-community/naersk)                 |
-| Rust                    | [`crate2nix`](https://nix-community.github.io/crate2nix/)           |
-| Rust toolchains         | [`fenix`](https://github.com/nix-community/fenix)                   |
-| Scala                   | [`typelevel-nix`](https://github.com/typelevel/typelevel-nix)       |
-| Scala                   | [`scala-seed`](https://github.com/DevInsideYou/scala-seed)          |
 | Scala                   | [`scala`](./scala/)                                                 |
 | Shell                   | [`shell`](./shell/)                                                 |
 | Tauri                   | [`tauri`](./tauri)                                                  |
 | Typst                   | [`typst`](./typst)                                                  |
-| Typst                   | [`press`](https://github.com/RossSmyth/press)                       |
-| Typst                   | [`typix`](https://github.com/loqusion/typix)                        |
-| Zig                     | [`zig2nix`](https://github.com/Cloudef/zig2nix)                     |
-| Zig                     | [`zon2nix`](https://github.com/nix-community/zon2nix)               |
+
+## Other projects
+
+| Language/framework/tool | Template/Project                                              |
+| :---------------------- | :------------------------------------------------------------ |
+| Go                      | [`gomod2nix`](https://github.com/nix-community/gomod2nix)     |
+| Haskell                 | [`haskell-flake`](https://github.com/srid/haskell-flake)      |
+| Haskell                 | [`cabal2nix`](https://github.com/NixOS/cabal2nix)             |
+| Node.js                 | [`node2nix`](https://github.com/svanderburg/node2nix)         |
+| OCaml                   | [`opam-nix`](https://github.com/tweag/opam-nix)               |
+| Python                  | [`uv2nix`](https://pyproject-nix.github.io/uv2nix/)           |
+| Rust                    | [`naersk`](https://github.com/nix-community/naersk)           |
+| Rust                    | [`crate2nix`](https://nix-community.github.io/crate2nix/)     |
+| Rust toolchains         | [`fenix`](https://github.com/nix-community/fenix)             |
+| Scala                   | [`typelevel-nix`](https://github.com/typelevel/typelevel-nix) |
+| Scala                   | [`scala-seed`](https://github.com/DevInsideYou/scala-seed)    |
+| Typst                   | [`press`](https://github.com/RossSmyth/press)                 |
+| Typst                   | [`typix`](https://github.com/loqusion/typix)                  |
+| Zig                     | [`zig2nix`](https://github.com/Cloudef/zig2nix)               |
+| Zig                     | [`zon2nix`](https://github.com/nix-community/zon2nix)         |
 
 ## Template contents
 

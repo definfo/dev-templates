@@ -9,7 +9,7 @@ jobs:
   lockfile:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     steps:
       - name: Checkout repository
@@ -23,6 +23,7 @@ jobs:
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@428c2b58a4b7414dabd372acb6a03dba1084d3ab # v25
         with:
+          pr-title: "bump: update flake.lock"
           commit-msg: "bump: update flake.lock"
           pr-labels: |
             auto merge
