@@ -40,6 +40,7 @@
             settings.global.excludes = [ ];
 
             programs = {
+              autocorrect.enable = true;
               nixfmt.enable = true;
               typstyle.enable = true;
             };

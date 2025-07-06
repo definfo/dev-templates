@@ -66,14 +66,7 @@
             settings.global.excludes = [ ];
 
             programs = {
-              autocorrect = {
-                enable = true;
-                includes = [
-                  "*.py"
-                  "*.ipynb"
-                  "*.md"
-                ];
-              };
+              autocorrect.enable = true;
               nixfmt.enable = true;
               ruff-format.enable = true;
             };

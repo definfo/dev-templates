@@ -79,22 +79,15 @@
           # https://flake.parts/options/treefmt-nix.html
           # Example: https://github.com/nix-community/buildbot-nix/blob/main/nix/treefmt/flake-module.nix
           treefmt = {
-            projectRootFile = "flake.nix";
+            projectRootFile = ".git/config";
             settings.global.excludes = [ ];
 
             programs = {
-              autocorrect = {
-                enable = true;
-                includes = [
-                  "*.nix"
-                  "*.yml"
-                  "*.md"
-                ];
-              };
+              autocorrect.enable = true;
               deadnix.enable = true;
-              mdformat.enable = true;
               mdsh.enable = true;
               nixfmt.enable = true;
+              prettier.enable = true;
               statix.enable = true;
               zizmor.enable = true;
             };

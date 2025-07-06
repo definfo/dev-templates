@@ -7,7 +7,10 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
@@ -67,21 +70,17 @@
             settings.global.excludes = [ ];
 
             programs = {
-              autocorrect = {
-                enable = true;
-                includes = [ "*.md" ];
-              };
+              autocorrect.enable = true;
               just.enable = true;
               nixfmt.enable = true;
               rustfmt.enable = true;
-              # shellcheck.enable = true;
-              # shfmt.enable = true;
             };
           };
 
           # https://flake.parts/options/git-hooks-nix.html
           # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
           pre-commit.settings.hooks = {
+            # Disable due to Nix sandbox restriction
             /*
               clippy = {
                 enable = true;

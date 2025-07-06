@@ -43,6 +43,7 @@
               settings.global.excludes = [ ];
 
               programs = {
+                autocorrect.enable = true;
                 nixfmt.enable = true;
                 texfmt.enable = true;
               };

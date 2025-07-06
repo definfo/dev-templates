@@ -59,11 +59,8 @@
             settings.global.excludes = [ ];
 
             programs = {
-              autocorrect = {
-                enable = true;
-                includes = [ "*.md" ];
-              };
-              biome.enable = true;
+              autocorrect.enable = true;
+              prettier.enable = true;
               nixfmt.enable = true;
             };
           };
@@ -73,6 +70,7 @@
           pre-commit.settings.hooks = {
             commitizen.enable = true;
             eclint.enable = true;
+            # eslint.enable = true;
             treefmt.enable = true;
           };
 

@@ -40,13 +40,9 @@
             settings.global.excludes = [ ];
 
             programs = {
-              autocorrect = {
-                enable = true;
-                includes = [ "*.md" ];
-              };
+              autocorrect.enable = true;
               nixfmt.enable = true;
               just.enable = true;
-              mdformat.enable = true;
             };
           };
 
