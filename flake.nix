@@ -79,13 +79,17 @@
           # https://flake.parts/options/treefmt-nix.html
           # Example: https://github.com/nix-community/buildbot-nix/blob/main/nix/treefmt/flake-module.nix
           treefmt = {
-            projectRootFile = "flake.nix";
+            projectRootFile = ".git/config";
             settings.global.excludes = [ ];
 
             programs = {
+              autocorrect.enable = true;
               deadnix.enable = true;
+              mdsh.enable = true;
               nixfmt.enable = true;
+              prettier.enable = true;
               statix.enable = true;
+              zizmor.enable = true;
             };
           };
 
@@ -95,22 +99,20 @@
             commitizen.enable = true;
             eclint.enable = true;
             editorconfig-checker.enable = true;
+            markdownlint.enable = true;
             treefmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
-            shellHook = ''
-              ${config.pre-commit.installationScript}
-              echo 1>&2 "Welcome to the development shell!"
-            '';
-            packages =
-              with scriptDrvs;
-              [
-                build
-                check
-                update
-              ]
-              ++ config.pre-commit.settings.enabledPackages;
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
+            packages = with scriptDrvs; [
+              build
+              check
+              update
+            ];
           };
         };
       flake = {
@@ -194,6 +196,7 @@
           nodejs = node;
           py = python;
           rocq = coq;
+          rs = rust;
           tex = latex;
         };
       };

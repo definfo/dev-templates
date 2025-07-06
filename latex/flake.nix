@@ -43,37 +43,36 @@
               settings.global.excludes = [ ];
 
               programs = {
-                deadnix.enable = true;
+                autocorrect.enable = true;
                 nixfmt.enable = true;
-                statix.enable = true;
                 texfmt.enable = true;
               };
             };
 
             # https://flake.parts/options/git-hooks-nix.html
             # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
-            pre-commit.settings.addGcRoot = true;
             pre-commit.settings.hooks = {
               commitizen.enable = true;
               eclint.enable = true;
-              editorconfig-checker.enable = true;
               treefmt.enable = true;
             };
 
             devShells.default = pkgs.mkShell {
+              inputsFrom = [
+                config.treefmt.build.devShell
+                config.pre-commit.devShell
+              ];
+
               shellHook = ''
-                ${config.pre-commit.installationScript}
                 echo 1>&2 "Welcome to the development shell!"
               '';
-              packages =
-                with pkgs;
-                [
-                  texlive.combined.scheme-full
-                  texlab
-                  tectonic
-                  pandoc
-                ]
-                ++ config.pre-commit.settings.enabledPackages;
+
+              packages = with pkgs; [
+                texlive.combined.scheme-full
+                texlab
+                tectonic
+                pandoc
+              ];
             };
           };
       }

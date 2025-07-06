@@ -16,7 +16,7 @@ Sorry for any inconvenience :(
 
 To initialize (where `${ENV}` is listed in the table below):
 
-```shell
+```bash
 nix flake init -t github:definfo/dev-templates#${ENV}
 ```
 
@@ -24,47 +24,48 @@ nix flake init -t github:definfo/dev-templates#${ENV}
 
 Once your preferred template has been initialized, you can use the provided shell in two ways:
 
-1. If you have [`nix-direnv`][nix-direnv] installed, you can initialize the environment by running `direnv allow`.
-2. If you don't have `nix-direnv` installed, you can run `nix develop` to open up the Nix-defined shell.
+1. If you have \[`nix-direnv`\][nix-direnv] installed, you can initialize the environment by running `direnv allow`.
+1. If you don't have `nix-direnv` installed, you can run `nix develop` to open up the Nix-defined shell.
 
 ## Available templates/projects
 
-| Language/framework/tool | Template/Project                                                  |
-| :---------------------- | :---------------------------------------------------------------- |
-| C/C++                   | [`c-cpp`](./c-cpp/) Also refer to (https://wiki.nixos.org/wiki/C) |
-| Coq                     | [`coq`](./coq/)                                                   |
-| Go                      | [`gomod2nix`](https://github.com/nix-community/gomod2nix)         |
-| Haskell                 | [`haskell-flake`](https://github.com/srid/haskell-flake)          |
-| Haskell                 | [`cabal2nix`](https://github.com/NixOS/cabal2nix)                 |
-| Java                    | [`java`](./java/)                                                 |
-| Jupyter                 | [`uv2nix TODO`](https://pyproject-nix.github.io/uv2nix/)          |
-| Kotlin                  | [`kotlin`](./kotlin/)                                             |
-| LaTeX                   | [`latex`](./latex/)                                               |
-| Markdown                | [`markdown`](./markdown/)                                         |
-| Node.js                 | [`node`](./node/)                                                 |
-| Node.js                 | [`node2nix`](https://github.com/svanderburg/node2nix)             |
-| OCaml                   | [`ocaml`](./ocaml/)                                               |
-| OCaml                   | [`opam-nix`](https://github.com/tweag/opam-nix)                   |
-| Python                  | [`python`](./python/)                                             |
-| Python                  | [`uv2nix`](https://pyproject-nix.github.io/uv2nix/)               |
-| Rust                    | [`rust`](./rust/)                                                 |
-| Rust                    | [`naersk`](https://github.com/nix-community/naersk)               |
-| Rust                    | [`crate2nix`](https://nix-community.github.io/crate2nix/)         |
-| Rust toolchains         | [`fenix`](https://github.com/nix-community/fenix)                 |
-| Scala                   | [`typelevel-nix`](https://github.com/typelevel/typelevel-nix)     |
-| Scala                   | [`scala-seed`](https://github.com/DevInsideYou/scala-seed)        |
-| Scala                   | [`scala`](./scala/)                                               |
-| Shell                   | [`shell`](./shell/)                                               |
-| Tauri                   | [`tauri`](./tauri)                                                |
-| Typst                   | [`typst`](./typst)                                                |
-| Typst                   | [`press`](https://github.com/RossSmyth/press)                     |
-| Typst                   | [`typix`](https://github.com/loqusion/typix)                      |
-| Zig                     | [`zig2nix`](https://github.com/Cloudef/zig2nix)                   |
-| Zig                     | [`zon2nix`](https://github.com/nix-community/zon2nix)             |
+| Language/framework/tool | Template/Project                                                    |
+| :---------------------- | :------------------------------------------------------------------ |
+| C/C++                   | [`c-cpp`](./c-cpp/) Also refer to (<https://wiki.nixos.org/wiki/C>) |
+| Coq                     | [`coq`](./coq/)                                                     |
+| Go                      | [`gomod2nix`](https://github.com/nix-community/gomod2nix)           |
+| Haskell                 | [`haskell-flake`](https://github.com/srid/haskell-flake)            |
+| Haskell                 | [`cabal2nix`](https://github.com/NixOS/cabal2nix)                   |
+| Java                    | [`java`](./java/)                                                   |
+| Jupyter                 | [`uv2nix TODO`](https://pyproject-nix.github.io/uv2nix/)            |
+| Kotlin                  | [`kotlin`](./kotlin/)                                               |
+| LaTeX                   | [`latex`](./latex/)                                                 |
+| Markdown                | [`markdown`](./markdown/)                                           |
+| Node.js                 | [`node`](./node/)                                                   |
+| Node.js                 | [`node2nix`](https://github.com/svanderburg/node2nix)               |
+| OCaml                   | [`ocaml`](./ocaml/)                                                 |
+| OCaml                   | [`opam-nix`](https://github.com/tweag/opam-nix)                     |
+| Python                  | [`python`](./python/)                                               |
+| Python                  | [`uv2nix`](https://pyproject-nix.github.io/uv2nix/)                 |
+| Rust                    | [`rust`](./rust/)                                                   |
+| Rust                    | [`naersk`](https://github.com/nix-community/naersk)                 |
+| Rust                    | [`crate2nix`](https://nix-community.github.io/crate2nix/)           |
+| Rust toolchains         | [`fenix`](https://github.com/nix-community/fenix)                   |
+| Scala                   | [`typelevel-nix`](https://github.com/typelevel/typelevel-nix)       |
+| Scala                   | [`scala-seed`](https://github.com/DevInsideYou/scala-seed)          |
+| Scala                   | [`scala`](./scala/)                                                 |
+| Shell                   | [`shell`](./shell/)                                                 |
+| Tauri                   | [`tauri`](./tauri)                                                  |
+| Typst                   | [`typst`](./typst)                                                  |
+| Typst                   | [`press`](https://github.com/RossSmyth/press)                       |
+| Typst                   | [`typix`](https://github.com/loqusion/typix)                        |
+| Zig                     | [`zig2nix`](https://github.com/Cloudef/zig2nix)                     |
+| Zig                     | [`zon2nix`](https://github.com/nix-community/zon2nix)               |
 
 ## Template contents
 
-The sections below list what each template includes. In all cases, you're free to add and remove packages as you see fit; the templates are just boilerplate.
+The sections below list what each template includes.
+In all cases, you're free to add and remove packages as you see fit; the templates are just boilerplate.
 
 ### [`c-cpp`](./c-cpp/)
 
@@ -111,7 +112,6 @@ The sections below list what each template includes. In all cases, you're free t
 - pandoc
 - typst
 - mdformat
-- prettier
 
 ### [`node`](./node/)
 
@@ -119,7 +119,7 @@ The sections below list what each template includes. In all cases, you're free t
 - npm
 - pnpm
 - Yarn
-- biome/deno/prettier
+- biome
 
 ### [`python`](./python/)
 
@@ -182,4 +182,10 @@ The sections below list what each template includes. In all cases, you're free t
 
 ## Code organization
 
-All of the templates have only the root [flake](./flake.nix) as a flake input. That root flake provides a common revision of [Nixpkgs] and [`flake-parts`][flake-parts] to all the templates.
+All of the templates have only the root [flake](./flake.nix) as a flake input.
+That root flake provides a common revision of
+
+- [Nixpkgs]
+- \[`flake-parts`\][flake-parts]
+
+to all the templates.

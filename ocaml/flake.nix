@@ -53,10 +53,8 @@
             settings.global.excludes = [ ];
 
             programs = {
-              deadnix.enable = true;
               nixfmt.enable = true;
               ocamlformat.enable = true;
-              statix.enable = true;
             };
           };
 
@@ -67,26 +65,25 @@
             # dune-fmt.enable = true;
             dune-opam-sync.enable = true;
             eclint.enable = true;
-            editorconfig-checker.enable = true;
             treefmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
-            # TODO: `gradle -Dorg.gradle.java.home=$JAVA_HOME`
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
+
             shellHook = ''
-              ${config.pre-commit.installationScript}
               echo 1>&2 "Welcome to the development shell!"
             '';
 
-            packages =
-              with pkgs;
-              [
-                ocaml
-                ocaml-lsp
-                dune_3
-                odoc
-              ]
-              ++ config.pre-commit.settings.enabledPackages;
+            packages = with pkgs; [
+              ocaml
+              ocaml-lsp
+              dune_3
+              odoc
+            ];
           };
         };
     };

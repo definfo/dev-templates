@@ -45,9 +45,7 @@
             settings.global.excludes = [ ];
 
             programs = {
-              deadnix.enable = true;
               nixfmt.enable = true;
-              statix.enable = true;
             };
           };
 
@@ -56,25 +54,24 @@
           pre-commit.settings.hooks = {
             commitizen.enable = true;
             eclint.enable = true;
-            editorconfig-checker.enable = true;
             treefmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
-            # TODO: `gradle -Dorg.gradle.java.home=$JAVA_HOME`
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
+
             shellHook = ''
-              ${config.pre-commit.installationScript}
               echo 1>&2 "Welcome to the development shell!"
             '';
 
-            packages =
-              with coqPackages;
-              [
-                coq
-                # For coq.version <= 8.15, use legacy version instead
-                # coq-lsp
-              ]
-              ++ config.pre-commit.settings.enabledPackages;
+            packages = with coqPackages; [
+              coq
+              # For coq.version <= 8.15, use legacy version instead
+              # coq-lsp
+            ];
           };
         };
     };

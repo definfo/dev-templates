@@ -74,26 +74,10 @@
             settings.global.excludes = [ ];
 
             programs = {
+              autocorrect.enable = true;
               biome.enable = true;
-              deadnix.enable = true;
-              # deno.enable = true;
               nixfmt.enable = true;
               rustfmt.enable = true;
-              statix.enable = true;
-              /*
-                prettier = {
-                  enable = true;
-                  # Use Prettier 2.x for CJK pangu formatting
-                  package = pkgs.nodePackages.prettier.override {
-                    version = "2.8.8";
-                    src = pkgs.fetchurl {
-                      url = "https://registry.npmjs.org/prettier/-/prettier-2.8.8.tgz";
-                      sha512 = "tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==";
-                    };
-                  };
-                  settings.editorconfig = true;
-                };
-              */
             };
           };
 
@@ -115,15 +99,19 @@
             */
             commitizen.enable = true;
             eclint.enable = true;
-            editorconfig-checker.enable = true;
             treefmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
+
             shellHook = ''
-              ${config.pre-commit.installationScript}
               echo 1>&2 "Welcome to the development shell!"
             '';
+
             packages =
               with pkgs;
               [
@@ -148,8 +136,7 @@
                 # gtk4
                 # libsoup_3
                 # webkitgtk_4_1
-              ]
-              ++ config.pre-commit.settings.enabledPackages;
+              ];
           };
         };
     };

@@ -7,7 +7,10 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
@@ -67,30 +70,17 @@
             settings.global.excludes = [ ];
 
             programs = {
-              deadnix.enable = true;
+              autocorrect.enable = true;
+              just.enable = true;
               nixfmt.enable = true;
               rustfmt.enable = true;
-              # shellcheck.enable = true;
-              # shfmt.enable = true;
-              statix.enable = true;
-              prettier = {
-                enable = true;
-                # Use Prettier 2.x for CJK pangu formatting
-                package = pkgs.nodePackages.prettier.override {
-                  version = "2.8.8";
-                  src = pkgs.fetchurl {
-                    url = "https://registry.npmjs.org/prettier/-/prettier-2.8.8.tgz";
-                    sha512 = "tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==";
-                  };
-                };
-                settings.editorconfig = true;
-              };
             };
           };
 
           # https://flake.parts/options/git-hooks-nix.html
           # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
           pre-commit.settings.hooks = {
+            # Disable due to Nix sandbox restriction
             /*
               clippy = {
                 enable = true;
@@ -106,15 +96,19 @@
             */
             commitizen.enable = true;
             eclint.enable = true;
-            editorconfig-checker.enable = true;
             treefmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
+            inputsFrom = [
+              config.treefmt.build.devShell
+              config.pre-commit.devShell
+            ];
+
             shellHook = ''
-              ${config.pre-commit.installationScript}
               echo 1>&2 "Welcome to the development shell!"
             '';
+
             packages =
               with pkgs;
               [
@@ -125,27 +119,20 @@
                 # rustPlatform.bindgenHook
 
                 # Miscellaneous
-                just
-                cargo-audit
-                cargo-bloat
-                cargo-license
-                cargo-nextest
-                cargo-outdated
-                cargo-show-asm
-                samply
-                watchexec
-                bacon
+                # cargo-audit
+                # cargo-bloat
+                # cargo-license
+                # cargo-nextest
+                # cargo-outdated
+                # cargo-show-asm
+                # samply
+                # watchexec
+                # bacon
               ]
-              ++ (
-                if system == "x86_64-darwin" || system == "aarch64-darwin" then
-                  [ ]
-                else
-                  [
-                    cargo-llvm-cov
-                    valgrind
-                  ]
-              )
-              ++ config.pre-commit.settings.enabledPackages;
+              ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+                # cargo-llvm-cov
+                # valgrind
+              ];
           };
         };
     };
