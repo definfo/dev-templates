@@ -85,7 +85,6 @@
             programs = {
               autocorrect.enable = true;
               deadnix.enable = true;
-              mdsh.enable = true;
               nixfmt.enable = true;
               prettier.enable = true;
               statix.enable = true;
@@ -96,7 +95,7 @@
           # https://flake.parts/options/git-hooks-nix.html
           # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
           pre-commit.settings.hooks = {
-            commitizen.enable = true;
+            # commitizen.enable = true;
             eclint.enable = true;
             editorconfig-checker.enable = true;
             markdownlint.enable = true;
