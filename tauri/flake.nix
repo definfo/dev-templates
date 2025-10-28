@@ -128,14 +128,14 @@
               ]
               ++ lib.optionals stdenv.hostPlatform.isLinux [
                 glib-networking
-                # Tauri v1
                 gtk3
-                libsoup_2_4
-                webkitgtk_4_0
-                # Tauri v2
                 # gtk4
-                # libsoup_3
-                # webkitgtk_4_1
+                ## Tauri v1 (EOL) ##
+                # libsoup_2_4
+                # webkitgtk_4_0
+                # Tauri v2 ##
+                libsoup_3
+                webkitgtk_4_1
               ];
           };
         };
