@@ -116,6 +116,11 @@
         };
       flake = {
         templates = rec {
+          aya = {
+            path = ./aya;
+            description = "Aya development environment";
+          };
+
           c-cpp = {
             path = ./c-cpp;
             description = "C/C++ development environment";
