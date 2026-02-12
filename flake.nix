@@ -87,16 +87,15 @@
           # https://flake.parts/options/treefmt-nix.html
           # Example: https://github.com/nix-community/buildbot-nix/blob/main/nix/treefmt/flake-module.nix
           treefmt = {
-            projectRootFile = ".git/config";
+            projectRootFile = "flake.nix";
             settings.global.excludes = [ ];
 
             programs = {
               autocorrect.enable = true;
               deadnix.enable = true;
               nixfmt.enable = true;
-              prettier.enable = true;
+              oxfmt.enable = true;
               statix.enable = true;
-              zizmor.enable = true;
             };
           };
 
@@ -104,11 +103,11 @@
           # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
           pre-commit.settings.package = pkgs.prek;
           pre-commit.settings.hooks = {
-            # commitizen.enable = true;
+            commitizen.enable = true;
             eclint.enable = true;
-            editorconfig-checker.enable = true;
             markdownlint.enable = true;
             treefmt.enable = true;
+            zizmor.enable = true;
           };
 
           devShells.default = pkgs.mkShell {
