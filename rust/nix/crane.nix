@@ -5,9 +5,10 @@
   ...
 }:
 rec {
+  # TODO: decouple with filepath
+  src = craneLib.cleanCargoSource ../.;
   commonArgs = {
-    # TODO: decouple with filepath
-    src = craneLib.cleanCargoSource ../.;
+    inherit src;
     strictDeps = true;
 
     buildInputs = lib.optionals pkgs.stdenv.isDarwin [

@@ -102,20 +102,6 @@
           # https://flake.parts/options/git-hooks-nix.html
           # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
           pre-commit.settings.hooks = {
-            # Disable due to Nix sandbox restriction
-            /*
-              clippy = {
-                enable = true;
-                packageOverrides = {
-                  cargo = pkgs.rustToolchain;
-                  clippy = pkgs.rustToolchain;
-                };
-                settings = {
-                  allFeatures = true;
-                  denyWarnings = true;
-                };
-              };
-            */
             commitizen.enable = true;
             eclint.enable = true;
             treefmt.enable = true;
@@ -167,9 +153,9 @@
             };
 
             # Audit licenses
-            my-crate-deny = craneLib.cargoDeny {
-              inherit src;
-            };
+            # my-crate-deny = craneLib.cargoDeny {
+            #   inherit src;
+            # };
 
             # Run tests with cargo-nextest
             # Consider setting `doCheck = false` on `my-crate` if you do not want
