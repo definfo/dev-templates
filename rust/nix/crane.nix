@@ -6,7 +6,8 @@
 }:
 rec {
   commonArgs = {
-    src = craneLib.cleanCargoSource ./.;
+    # TODO: decouple with filepath
+    src = craneLib.cleanCargoSource ../.;
     strictDeps = true;
 
     buildInputs = lib.optionals pkgs.stdenv.isDarwin [
