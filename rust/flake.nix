@@ -109,7 +109,6 @@
 
           checks = {
             # Build the crate as part of `nix flake check` for convenience
-            default = my-crate;
             inherit my-crate;
 
             # Run clippy (and deny all warnings) on the crate source,
@@ -153,9 +152,9 @@
             };
 
             # Audit licenses
-            # my-crate-deny = craneLib.cargoDeny {
-            #   inherit src;
-            # };
+            my-crate-deny = craneLib.cargoDeny {
+              inherit src;
+            };
 
             # Run tests with cargo-nextest
             # Consider setting `doCheck = false` on `my-crate` if you do not want
