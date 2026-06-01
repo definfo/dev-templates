@@ -3,13 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-compat = {
+      url = "github:NixOS/flake-compat";
+      flake = false;
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    # TODO: switch to upstream repo
-    # aya-dev.url = "github:aya-prover/aya-dev";
-    aya-dev.url = "github:definfo/aya-dev/nix";
+    aya-dev.url = "github:aya-prover/aya-dev";
   };
 
   outputs =
@@ -19,7 +21,6 @@
       systems = [
         "x86_64-linux"
         "aarch64-linux"
-
         "aarch64-darwin"
       ];
       perSystem =

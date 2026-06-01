@@ -3,21 +3,35 @@
     "aya-dev": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-jdk": "nixpkgs-jdk"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1761709190,
-        "narHash": "sha256-xfzJIrWjbPBvoeKttclI81xm/E6s0lsK8ngSclQjqv0=",
-        "owner": "definfo",
+        "lastModified": 1768240524,
+        "narHash": "sha256-VFog+WLdOtWvgA4jN00qzi8pWZF9LNYoW9J7W9XXHtc=",
+        "owner": "aya-prover",
         "repo": "aya-dev",
-        "rev": "c03726d193810ac38f39a67aff1dbc609477d6a8",
+        "rev": "73c2e7ad9d818b45104dc0e52e72ba3e764a110d",
         "type": "github"
       },
       "original": {
-        "owner": "definfo",
-        "ref": "nix",
+        "owner": "aya-prover",
         "repo": "aya-dev",
+        "type": "github"
+      }
+    },
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "flake-compat",
         "type": "github"
       }
     },
@@ -75,22 +89,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-jdk": {
-      "locked": {
-        "lastModified": 1735651292,
-        "narHash": "sha256-YLbzcBtYo1/FEzFsB3AnM16qFc6fWPMIoOuSoDwvg9g=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "0da3c44a9460a26d2025ec3ed2ec60a895eb1114",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "release-24.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1780030872,
@@ -110,6 +108,7 @@
     "root": {
       "inputs": {
         "aya-dev": "aya-dev",
+        "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs_2"
       }
