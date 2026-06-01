@@ -29,19 +29,25 @@
         "x86_64-linux"
         "aarch64-linux"
         "aarch64-darwin"
-        "x86_64-darwin"
       ];
 
       perSystem =
         {
           config,
           pkgs,
+          lib,
           ...
         }:
         let
-          coqVersion = "8_15"; # Change this value to update the whole stack
-          # coqVersion = "8_20";
-          coqPackages = pkgs."coqPackages_${coqVersion}";
+          coqVersion = lib.replaceStrings [ "_" ] [ "." ] (
+            builtins.head (builtins.split "\n" (builtins.readFile ./.coq-version))
+          );
+          coqPackages = pkgs."coqPackages_${lib.versions.major coqVersion}_${lib.versions.minor coqVersion}";
+          inherit (coqPackages)
+            coq
+            coq-lsp
+            rocq-language-server
+            ;
         in
         {
           # https://flake.parts/options/treefmt-nix.html
@@ -73,10 +79,10 @@
               echo 1>&2 "Welcome to the development shell!"
             '';
 
-            packages = with coqPackages; [
+            packages = [
               coq
-              # For coq.version <= 8.15, use legacy version instead
-              # coq-lsp
+              coq-lsp
+              rocq-language-server
             ];
           };
         };

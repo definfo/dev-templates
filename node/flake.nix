@@ -29,7 +29,6 @@
         "x86_64-linux"
         "aarch64-linux"
         "aarch64-darwin"
-        "x86_64-darwin"
       ];
 
       perSystem =
@@ -39,9 +38,8 @@
           system,
           ...
         }:
-        # Bun is unsupported due to its fragile offline-mode & lockfile
         let
-          nodeVersion = 22; # Change this value to update the whole stack
+          nodeVersion = builtins.head (builtins.split "\n" (builtins.readFile ./.node-version));
         in
         {
           _module.args.pkgs = import inputs.nixpkgs {
@@ -66,7 +64,7 @@
 
             programs = {
               autocorrect.enable = true;
-              prettier.enable = true;
+              oxfmt.enable = true;
               nixfmt.enable = true;
             };
           };
@@ -77,6 +75,7 @@
             commitizen.enable = true;
             eclint.enable = true;
             # eslint.enable = true;
+            oxlint.enable = true;
             treefmt.enable = true;
           };
 
