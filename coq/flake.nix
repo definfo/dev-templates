@@ -50,7 +50,7 @@
           inherit (coqPackages)
             coq
             coq-lsp
-            rocq-language-server
+            vsrocq-language-server
             ;
         in
         {
@@ -86,7 +86,7 @@
             packages = [
               coq
               coq-lsp
-              rocq-language-server
+              vsrocq-language-server
             ];
           };
         };
