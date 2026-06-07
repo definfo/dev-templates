@@ -102,7 +102,6 @@
           # Example: https://github.com/cachix/git-hooks.nix/blob/master/template/flake.nix
           pre-commit.settings.package = pkgs.prek;
           pre-commit.settings.hooks = {
-            commitizen.enable = true;
             eclint.enable = true;
             markdownlint.enable = true;
             treefmt.enable = true;
