@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1768240524,
-        "narHash": "sha256-VFog+WLdOtWvgA4jN00qzi8pWZF9LNYoW9J7W9XXHtc=",
+        "lastModified": 1780951909,
+        "narHash": "sha256-7witMqAEPvTHZnUuJ6VTBgkyv82poPnkNyqhBrIJup4=",
         "owner": "aya-prover",
         "repo": "aya-dev",
-        "rev": "73c2e7ad9d818b45104dc0e52e72ba3e764a110d",
+        "rev": "5296b348775881e3c797bbc8d1c898a1ac959e00",
         "type": "github"
       },
       "original": {
@@ -91,11 +91,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1780030872,
-        "narHash": "sha256-u6WU/yd/o8iYQrHX3RAwO1hYa3LkoSL+WNQD0rJfJZQ=",
+        "lastModified": 1781328464,
+        "narHash": "sha256-j9uBlHI0eJ9zWU9IlF6SlBBPdeJu30hcvar31IRKHpw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e9a7635a57597d9754eccebdfc7045e6c8600e6b",
+        "rev": "5a722a7155bfc9fbe657f28d26b71860d95324bc",
         "type": "github"
       },
       "original": {
