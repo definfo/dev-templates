@@ -5,3 +5,5 @@ pull_request_rules:
       - label = auto merge
     actions:
       merge:
+merge_protections_settings:
+  reporting_method: check-runs
